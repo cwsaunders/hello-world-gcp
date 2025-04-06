@@ -44,3 +44,4 @@ venv/
 
 # Other
 start.sh
+credentials.json
