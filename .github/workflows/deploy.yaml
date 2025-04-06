@@ -49,6 +49,10 @@ jobs:
         with:
           terraform_version: "1.6.0"
 
+      - name: Enable Cloud Run API
+        run: |
+          gcloud services enable run.googleapis.com
+
       - name: Terraform Init
         working-directory: infrastructure/terraform
         run: terraform init
