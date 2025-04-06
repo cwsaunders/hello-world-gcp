@@ -23,12 +23,14 @@ jobs:
       - name: Configure Docker authentication for Artifact Registry
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-
+          echo "Explicit Docker login..."
+          docker login us-central1-docker.pkg.dev -u oauth2accesstoken -p "$(gcloud auth print-access-token)"
+          
       - name: Build Docker image
         run: |
           cd app
           docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest .
-
+      
       - name: Push Docker image
         run: |
           docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest
