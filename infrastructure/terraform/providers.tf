@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("credentials.json")
+  credentials = var.credentials
   project     = "constant-cursor-455921-a9"
   region      = "us-central1"
 }
