@@ -29,11 +29,11 @@ jobs:
           cd app
           docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest .
 
-- name: Upload Docker config as artifact
-  uses: actions/upload-artifact@v3
-  with:
-    name: docker-config
-    path: ~/.docker/config.json
+      - name: Upload Docker config as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-config
+          path: ~/.docker/config.json
 
       - name: Push Docker image
         run: |
