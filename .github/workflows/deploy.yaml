@@ -55,8 +55,12 @@ jobs:
 
       - name: Terraform Plan
         working-directory: infrastructure/terraform
-        run: terraform plan -var="project=${{ secrets.GCP_PROJECT_ID }}" -var="container_image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest"
+        run: |
+          CREDENTIALS=$(echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode | jq -c .)
+          terraform plan -var="project=${{ secrets.GCP_PROJECT_ID }}" -var="container_image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest" -var="credentials=${CREDENTIALS}"
 
       - name: Terraform Apply
         working-directory: infrastructure/terraform
-        run: terraform apply -auto-approve -var="project=${{ secrets.GCP_PROJECT_ID }}" -var="container_image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest"
+        run: |
+          CREDENTIALS=$(echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode | jq -c .)
+          terraform apply -auto-approve -var="project=${{ secrets.GCP_PROJECT_ID }}" -var="container_image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest" -var="credentials=${CREDENTIALS}"
