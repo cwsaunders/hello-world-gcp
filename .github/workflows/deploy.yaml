@@ -30,7 +30,7 @@ jobs:
           docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/hello-world-container/hello-world-app:latest .
 
       - name: Upload Docker config as artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: docker-config
           path: ~/.docker/config.json
