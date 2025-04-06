@@ -3,6 +3,11 @@
 # View project
 https://hello-world-xe4gocz25q-uc.a.run.app/
 
+# How to use GH Action
+1. Go to Actions/'Build, Push, And Deploy' (Here: https://github.com/cwsaunders/hello-world-gcp/actions/workflows/deploy.yaml)
+1. Hit "Run Workflow"
+1. In the dropdown box hit "Run Workflow" again
+
 # To recreate in your own repository
 1. git clone this repository to yours
 1. Adjust bucket name to your own in infrastructure/terraform/backend.tf
